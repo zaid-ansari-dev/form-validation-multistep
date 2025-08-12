@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .heidi {
+            display: flex;
+            flex-direction: column;
+            align-items: center;  /* This centers the step indicator */
+            width: 100%;
+}
+        .show-steps{
+            height:50px;
+            width:200px;
+            background-color: darkgray;
+            font-family:sans-serif;
+            font-weight:bolder;
+            font-size:20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius:15px;
+            margin-bottom:20px;
+            transition:box-shadow 0.5s;
+            cursor:pointer;
+        }
+        .show-steps:hover{
+            box-shadow:inset -3px -3px 5px #ffffff70,inset 3px 3px 15px #00000070;
+        }
+        .container{
+            height:600px;
+            width:800px;
+            background-color:white;
+            border-radius:35px;
+            margin:25px;
+            transition: box-shadow 0.5s ;
+            display:flex;
+            flex-direction:column;
+            justify-content: center;
+        }
+        .container:hover{
+            box-shadow:-3px -3px 5px #ffffff70, 3px 3px 15px #00000070;
+        }
+        .image{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        img{
+            height:100px;
+            width:200px;           
+        }
+        .form-step1{
+            margin-top:10px;
+            display:block;
+        }
+        .step1{
+            padding:10px;
+            font-family: sans-serif;
+            font-size: 30px;
+            font-weight: bolder;
+            padding-left:20px;
+            margin-top:4px;
+        }
+        .box1{
+            display: flex;
+            flex-direction: column;
+            padding-left:40px;
+            height: 100%;
+            width:100%;
+            box-sizing: border-box;
+        }
+        label{
+            font-size: 25px;
+            font-family: sans-serif;
+            font-weight: bolder;
+            color:rgb(86, 84, 84);
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"]{
+            height: 45px;
+            width: 700px;
+            border:none;
+            outline:none;
+            border-radius: 10px;
+            border:2px solid gray;
+            box-sizing: border-box;
+            padding:10px;
+            font-family: sans-serif;
+            
+        }
+        .input-pair{
+            margin:18px;
+        }
+        .right-next{
+            display:flex;
+            justify-content: flex-end;
+        }
+        .next1{
+             display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right:80px;
+            background-color: #0041a3;
+            height: 40px;
+            width:100px;
+            border-radius:10px;
+            color:white;
+            font-weight:bolder;
+            font-size: 20px;
+            font-family: sans-serif;
+            cursor:pointer;
+        }
+
+        /* form-->2 */
+        .form-step2{
+            margin-top:10px;
+            display: none;    
+        }
+        .lower2{
+            display:flex;
+            justify-content:space-between;
+        }
+        .back2{
+            color:#0041a3;
+            border:1px solid #0041a3;
+            font-family:sans-serif;
+            font-weight:bolder;
+            height:40px;
+            width:100px;
+            font-size:20px;
+            border-radius:10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left:40px;
+            cursor: pointer;
+        }
+        .next2{
+            background-color: #0041a3;
+            color:white;
+            font-family:sans-serif;
+            font-weight:bolder;
+            height:40px;
+            width:100px;
+            font-size:20px;
+            border-radius:10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right:70px;
+            cursor: pointer;
+        }
+        .form-step3{
+            display:none;
+        }
+        .step3{
+            padding:10px;
+            font-family: sans-serif;
+            font-size: 30px;
+            font-weight: bolder;
+            padding-left:20px;
+            margin-top:4px;
+        }
+        .box3{
+            display:flex;
+            flex-direction:column;
+            padding: 0 40px;
+        }
+        .workshop{
+            display:flex;
+            flex-direction:column;
+            align-items:flex-start;
+            gap:15px;
+            width:100%;
+        }
+        .workshop-selection{
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size:larger;
+        }
+        .workshop-label{
+            display:flex;
+            align-items:center;
+            gap:12px;
+        }
+        /* input[type='checkbox']{
+            width:30px;
+            height:30px;
+            cursor:pointer;
+        } */
+        .line{
+            height:2px;
+            width:100%;
+            max-width:700px;
+            background-color: gray;
+        }
+        .dietary{
+            display:flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top:20px;
+        }
+        
+        input[type="checkbox"] {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            accent-color: #0041a3; /* Matches form theme */
+        }
+        input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            margin: 0;
+            accent-color: #0041a3; /* Matches form theme */
+        }
+        .inBox{
+            background-color:#0041a3;
+            height:40px;
+            width:120px;
+            border-radius:10px;
+            color:white;
+            font-family:sans-serif;
+            font-weight:bolder;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            cursor:pointer;
+        }
+        .inc{
+            width:175px;
+        }
+        .lower3{
+            display:flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .back3, .next3{
+            height:40px;
+            width:100px;
+            border-radius:10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight:bolder;
+            font-family: sans-serif;
+            cursor:pointer;
+        }
+        .back3{
+            margin-left:20px;
+            border:1px solid #0041a3;
+            color:#0041a3;
+        }
+        .next3{
+            margin-right:20px;
+            color:white;
+            background-color: #0041a3;
+        }
+        .form-step4{
+            display:none;
+        }
+
+        .step4{
+            padding:10px;
+            font-family: sans-serif;
+            font-size: 30px;
+            font-weight: bolder;
+            padding-left:20px;
+            margin-top:10px;
+        }
+        .box4{
+            font-size:20px;
+            font-family:sans-serif;
+            display:flex;
+            flex-direction:column;
+            margin-bottom: 20px;
+        }
+        .each-box{
+            display:flex;
+            justify-content:space-between;
+        }
+        .bold-it{
+            margin-left:60px;
+            font-weight:bolder;
+        }
+        .child-of{
+            margin-right:60px;
+            color:rgb(68, 67, 67);
+            font-weight:550;
+        }
+        .line4{
+            height:2px;
+            margin:15px auto;
+            width:100%;
+            max-width:700px;
+            background-color: gray;
+            
+        }
+        .lower4{
+            font-family:sans-serif;
+            font-weight: bolder;
+            font-size:larger;
+            display:flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .back4,.submit4{
+            height:40px;
+            width:100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius:10px;
+            cursor:pointer;
+        }
+        .back4{
+            border:2px solid #0041a3;
+            margin-left:20px;
+        }
+        .submit4{
+            background-color:#0041a3;
+            color:white;
+            margin-right:20px;
+            width:250px;
+        }
+        .toast-container{
+            position:fixed;
+            top:20px;
+            right:20px;
+            z-index:1000;
+        }
+        .toast{
+            background-color:white;
+            color:black;
+            font-family:sans-serif;
+            font-size: 15px;
+            height:80px;
+            max-width:150px;
+            padding:10px;
+            font-weight: bolder;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: -3px -3px 5px #ffffff70, 3px 3px 15px #00000070;
+            border-radius:15px;
+            animation: slideIn 0.3s ease-out;
+            
+        }
+        @keyframes slideIn{
+            from{
+                transform: translateX(100%);
+                opacity:0;
+            }
+            to{
+                transform:translateX(0);
+                opacity:1;
+            }
+        }
+        .done-wrapper{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            height:100vh;
+        }
+        .done{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            width:400px;
+            height:150px;
+            background-color: #0041a3;
+            color:white;
+            font-family: sans-serif;
+            font-size: 30px;
+            font-weight: bolder;
+            border-radius: 20px;
+
+        }
+        .new-register{
+            position:fixed;
+            bottom:30px;
+            left:50%;
+            transform:translate(-50%);
+            color:#0041a3;
+            font-family: sans-serif;
+            font-size: 25px;
+            font-weight: bolder;
+            display:none;
+            padding:20px;
+            height:auto;
+            width:auto;
+            border-radius:15px;
+            transition:box-shadow 0.5s;
+            cursor:pointer;
+        }
+        .new-register:hover{
+            box-shadow:inset -3px -3px 5px #ffffff70,inset 3px 3px 15px #00000070;
+        }
+    </style>
+<body>
+    <div class="heidi">
+        <div class="toast-container"></div>
+    <div class="container">
+        <div class="image">
+            <img src="Gemini_Generated_Image_cqx3fwcqx3fwcqx3.png" alt="">
+        </div>
+
+        <!-- STEP---1 -->
+        <div class="form-step1">
+            <div class="step1">Step 1: Personal Information</div>
+            <div class="box1"> 
+                <div class="input-pair">
+                    <label for="name">Full Name:</label>
+                    <input type="text" class="name" placeholder=" ex. Zaid">
+                </div>
+                
+                <div class="input-pair">
+                    <label for="email">Email Address:</label>
+                    <input type="text" class="email" placeholder=" ex. @proton">
+                </div>
+
+                <div class="input-pair">
+                    <label for="phone">Phone Number:</label>
+                    <input type="text" class="phone" placeholder=" ex. 50143">
+                </div>
+                <div class="right-next">
+                    <div class="next1">Next</div>            
+                </div>
+            </div>
+        </div>
+        <!-- STEP---2 -->
+            <div class="form-step2">
+                <div class="step1">Step 2: Professional Details</div>
+                <div class="box1">
+                    <div class="input-pair">
+                        <label for="job">Job Title:</label>
+                        <input type="text" class="job" placeholder=" ex. engineer">
+                    </div>
+                    
+                    <div class="input-pair">
+                        <label for="company">Company Name:</label>
+                        <input type="text" class="company" placeholder=" ex. Heidi">
+                    </div>
+                    <div class="input-pair">
+                        <label for="experience">Years of Experience:</label>
+                    <input type="text" class="experience" placeholder=" ex. 2 years">
+                    </div>
+                    <div class="lower2">
+                        <div class="back2">Back</div>
+                        <div class="next2">Next</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Step--3 -->
+             <div class="form-step3">
+                <div class="step3">Step 3: Event Preferences</div>
+                <div class="box3">
+                    <div class="workshop">
+                        <div class="workshop-selection">Workshop Selection</div>
+                        <label class="workshop-label">
+                            <input type="checkbox" class="pls-left" name="workshop" value="quantum">
+                            <span>Introduction to Quantum Computing</span>
+                        </label>
+                        <div class="line"></div>
+                        <label class="workshop-label">
+                            <input type="checkbox" class="pls-left" name="workshop" value="AI">
+                            <span>Advanced AI & Machine Learning</span>
+                        </label>
+                        <div class="line"></div>
+                        <label class="workshop-label">
+                            <input type="checkbox" class="pls-left" name="workshop" value="web">
+                            <span>The future of Web development</span>
+                        </label>
+                    </div>
+                    <div class="dietary">
+                        <label class="radio-label">
+                            <div class="inBox">
+                                <input type="radio" name="dietary" value="none">
+                                <span class="none">None</span>
+                            </div>
+                        </label>
+                        <label class="radio-label">
+                            <div class="inBox inc">
+                                <input type="radio" name="dietary" value="vegetarian">
+                                <span class="veg">Vegetarian</span>
+                            </div>
+                        </label>
+                        <label class="radio-label">
+                            <div class="inBox">
+                                <input type="radio" name="dietary" value="vegan">
+                            <span class="vegan">Vegan</span>
+                            </div>
+                        </label>
+                        
+                    </div>
+                    <div class="lower3">
+                        <div class="back3">Back</div>
+                        <div class="next3">Next</div>
+                    </div>
+                </div>
+             </div>
+
+             <!-- Step---4 -->
+              <div class="form-step4">
+                <div class="step4">Step 4: Review & Submit</div>
+                <div class="box4">
+                    <div class="each-box">
+                        <div class="bold-it">Personal information</div>
+                        <div class="child-of one">Zaid</div>
+                    </div>
+                    <div class="line4"></div>
+                    <div class="each-box">
+                        <div class="bold-it">Email</div>
+                        <div class="child-of two">za@proton.me</div>
+                    </div>
+                    <div class="line4"></div>
+                    <div class="each-box">
+                        <div class="bold-it">Professional Details</div>
+                        <div class="child-of three">Software Engineers</div>
+                    </div>
+                    <div class="line4"></div>
+                    <div class="each-box">
+                        <div class="bold-it">Company</div>
+                        <div class="child-of four">The Heidi Project</div>
+                    </div>
+                    <div class="line4"></div>
+                    <div class="each-box">
+                        <div class="bold-it">
+                            <div class="keep">
+                                <div class="event-pref">Event Preferences</div>
+                                <div class="select-work">Selected Workshops</div>
+                            </div>
+                        </div>
+                        <div class="child-of five">AI in Healthcare, Future of Work</div>
+                    </div>
+                    <div class="line4"></div>
+                    <div class="each-box">
+                        <div class="bold-it">Dietary Restriction</div>
+                        <div class="child-of six">Vegetarian</div>
+                    </div>
+                </div>
+                <div class="lower4">
+                    <div class="back4">Back</div>
+                    <div class="submit4">Submit Registration</div>
+                </div>
+              </div>
+     </div>
+     <div class="show-steps">Step 1 0f 4</div>
+    </div>
+     <div class="done-wrapper">
+        <div class="done">Registration Done!!</div>
+     </div>
+     <div class="new-register">New Registration</div>
+</body>
+    <script>
+        const activeToasts = new Set();
+        function showToast(message,type){
+
+            if(activeToasts.has(message)) return;
+
+            const toastContainer = document.querySelector('.toast-container');
+
+            const toast = document.createElement('div');
+            toast.className = 'toast ' + type;
+            toast.textContent = message;
+            activeToasts.add(message);
+            toastContainer.appendChild(toast);
+            setTimeout(()=>{
+                toast.remove();
+                activeToasts.delete(message);
+            },3000);
+        }
+        let TheObjekt = {};
+        let name = document.querySelector('.name');
+        let email = document.querySelector('.email');
+        let phone = document.querySelector('.phone');
+        let next1 = document.querySelector('.next1');
+
+        let formStep1 = document.querySelector('.form-step1');
+        let formStep2 = document.querySelector('.form-step2');
+        let formStep3 = document.querySelector('.form-step3');
+        let formStep4 = document.querySelector('.form-step4');
+
+        let job = document.querySelector('.job');
+        let company = document.querySelector('.company');
+        let experience = document.querySelector('.experience');
+        let next2 = document.querySelector('.next2');
+
+        let next3 = document.querySelector('.next3');
+
+        let one = document.querySelector('.one');
+        let two = document.querySelector('.two');
+        let three = document.querySelector('.three');
+        let four = document.querySelector('.four');
+        let five = document.querySelector('.five');
+        let six = document.querySelector('.six');
+
+        let back2 = document.querySelector('.back2');
+        let back3 = document.querySelector('.back3');
+        let back4 = document.querySelector('.back4');
+
+        let showSteps = document.querySelector('.show-steps');
+
+        next1.addEventListener('click',function(){
+
+            if(!(/^[a-zA-Z\s]+$/.test(name.value))) return showToast('Please enter a valid name','toast-error');
+            let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if(!(emailPattern.test(email.value))) return showToast('Please enter a valid email','toast-error');
+            if(!(/^\d{10}$/.test(phone.value))) return showToast('Please enter a valid Phone no.','toast-error');
+            
+            else{
+                showToast('Step 1 Saved','total-success');
+                formStep1.style.display='none';
+                formStep2.style.display='block';
+                TheObjekt.name = name.value;
+                TheObjekt.email = email.value;
+                TheObjekt.phone = phone.value;
+                showSteps.textContent = 'Step 2 Of 4';
+            }
+        })
+
+        next2.addEventListener('click',function(){
+            if(!(/^[a-zA-Z\s]+$/.test(job.value))) return showToast('Please Enter a valid job','toast-error');
+            if(!(/^[a-zA-Z0-9\s]+$/.test(company.value))) return showToast('Please enter a valid Company name','toast-error');
+            if(!(/^[a-zA-Z0-9\s]+$/.test(experience.value))) return showToast('Please enter a valid experience','toast-error');
+
+            else{
+                showToast('Step 2 Saved','total-success');
+                formStep2.style.display='none';
+                formStep3.style.display='block';
+                TheObjekt.job = job.value;
+                TheObjekt.company = company.value;
+                TheObjekt.experience = experience.value;
+                showSteps.textContent = 'Step 3 Of 4';
+            }
+        })
+        
+
+        next3.addEventListener('click',function(){
+            let selectedWorkshops = [];
+            const workshopCheckboxes = document.querySelectorAll('input[name="workshop"]');
+            workshopCheckboxes.forEach(checkbox => {
+            if(checkbox.checked){
+                selectedWorkshops.push(checkbox.value);
+            }
+            });
+            let foodChoice = document.querySelector('input[name="dietary"]:checked');
+        
+            if(selectedWorkshops.length === 0) return showToast('Choose atleast One Workshop','toast-error');
+            if(!foodChoice) return showToast('Please Choose One Diet','toast-error');
+            showToast('Step 3 Saved','total-success');
+            TheObjekt.workshops = selectedWorkshops;
+            TheObjekt.diet = foodChoice.value;
+
+            one.textContent = TheObjekt.name;
+            two.textContent = TheObjekt.email;
+            three.textContent = TheObjekt.experience;
+            four.textContent = TheObjekt.company;
+            five.textContent = TheObjekt.workshops;
+            six.textContent = TheObjekt.diet;
+
+            formStep3.style.display = 'none';
+            formStep4.style.display = 'block';
+            showSteps.textContent = 'Step 4 Of 4';
+        })
+
+        one.textContent = TheObjekt.name;
+        two.textContent = TheObjekt.email;
+        three.textContent = TheObjekt.experience;
+        four.textContent = TheObjekt.company;
+        five.textContent = TheObjekt.workshops;
+        six.textContent = TheObjekt.diet;
+        
+
+
+        back2.addEventListener('click',function(){
+            formStep2.style.display = 'none';
+            formStep1.style.display = 'block';
+            showSteps.textContent = 'Step 1 Of 4';
+        })
+        back3.addEventListener('click',function(){
+            formStep3.style.display = 'none';
+            formStep2.style.display = 'block';
+            showSteps.textContent = 'Step 2 Of 4';
+        })
+        back4.addEventListener('click',function(){
+            formStep4.style.display = 'none';
+            formStep3.style.display = 'block';
+            showSteps.textContent = 'Step 3 Of 4';
+        })
+        let doneWrapper = document.querySelector('.done-wrapper');
+        doneWrapper.style.display = 'none';
+        let newRegister = document.querySelector('.new-register');
+        let submit4 = document.querySelector('.submit4');
+        let heidi = document.querySelector('.heidi');
+        submit4.addEventListener('click',function(){
+            heidi.style.display = 'none';
+            doneWrapper.style.display = 'flex';
+            newRegister.style.display='block';
+        });
+        newRegister.addEventListener('click',function(){
+            location.reload();
+        });
+    </script>
+</html>
